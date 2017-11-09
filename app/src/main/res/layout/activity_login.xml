@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/Logo_BillsPaid_01" />
+        app:srcCompat="@drawable/logo_billspaid_01" />
 
     <EditText
         android:id="@+id/campoEmail"
@@ -48,9 +48,11 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/cadastrar"
+        android:onClick="login"
+        android:text="@string/login"
         app:layout_constraintBottom_toTopOf="@+id/btnEntrar"
         app:layout_constraintEnd_toEndOf="@+id/campoSenha"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/campoSenha"
         app:layout_constraintTop_toBottomOf="@+id/campoSenha" />
 
@@ -59,7 +61,8 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/login"
+        android:onClick="cadastro"
+        android:text="@string/cadastrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnCadastrar"
         app:layout_constraintStart_toStartOf="@+id/btnCadastrar"
