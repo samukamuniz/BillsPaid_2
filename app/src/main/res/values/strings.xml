@@ -3,4 +3,5 @@
     <string name="cadastrar">CADASTRAR</string>
     <string name="login">ENTRAR</string>
     <string name="login2">JÁ POSSUO CADASTRO</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

@@ -41,7 +41,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user){
         if (user != null){
-            //Passar para a próxima tela!
+            //Passar para outra tela.
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
         }
     }
 
