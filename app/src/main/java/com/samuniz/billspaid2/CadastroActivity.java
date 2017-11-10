@@ -1,13 +1,19 @@
 package com.samuniz.billspaid2;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -39,20 +45,40 @@ public class CadastroActivity extends AppCompatActivity {
             editUsuario.requestFocus();
             return;
         }
-        if(usuario.equals("")){
+        if(email.equals("")){
             editEmail.setError("Preencher este campo!");
             editEmail.requestFocus();
             return;
         }
-        if(usuario.equals("")){
+        if(senha.equals("")){
             editSenha.setError("Preencher este campo!");
             editSenha.requestFocus();
             return;
         }
 
-        mAuth.createUserWifiEmailAndPassword(email, senha)
-                .addOnCompleteListenner(this, new OnCompleteListener<AuthResult>(){
-            @
-        }
+        mAuth.createUserWithEmailAndPassword(email, senha)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+
+                        } else {
+                            try {
+                                throw task.getException();
+                            } catch (FirebaseAuthWeakPasswordException e){
+                                editSenha.setError("Senha fraca!");
+                                editSenha.requestFocus();
+                            } catch (FirebaseAuthInvalidCredentialsException e){
+                                editEmail.setError("E-mail inválido!");
+                                editEmail.requestFocus();
+                            } catch (FirebaseAuthUserCollisionException e){
+                                editEmail.setError("E-mail já existe!");
+                                editEmail.requestFocus();
+                            } catch (Exception e){
+                                Log.e("Cadastro", e.getMessage());
+                            }
+                        }
+                    }
+                });
     }
 }
