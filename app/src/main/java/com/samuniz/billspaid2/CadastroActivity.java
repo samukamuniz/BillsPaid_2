@@ -24,19 +24,27 @@ import java.util.Map;
 
 public class CadastroActivity extends AppCompatActivity {
 
+    //Definição de variáveis a ser usada nessa activity
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private FirebaseDatabase database;
+    private DatabaseReference bdReference;
 
+    //Campos declarados no Layout da Activity
     private EditText editUsuario;
     private EditText editEmail;
     private EditText editSenha;
 
+    //Aqui é onde se inicia as coisas na tela
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance(); //Linha a Ser excluída
+        mAuth = SingletonFirebase.getAutenticacao(); //Acessando autenticação via SingletonFirebase
 
+        //Aqui se conecta as variáveis do Layout com o código da activity
         editUsuario = findViewById(R.id.cadUsuario);
         editEmail = findViewById(R.id.cadEmail);
         editSenha = findViewById(R.id.cadSenha);
@@ -68,14 +76,22 @@ public class CadastroActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            /* [Velho] Antes do Singleton (Funcionava)
                             FirebaseUser user = mAuth.getCurrentUser(); //Pega o usuário atual
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
+                            DatabaseReference userRef = database.getReference("users/" + user.getUid());*/
 
+                            // [Novo] Com o Singleton
+                            user = SingletonFirebase.getUser(); //Resgatando usuário atual via SingletonFirebase
+                            database = SingletonFirebase.getDatabase();
+                            bdReference = SingletonFirebase.getReferenciaFirebase("users/" + user.getUid());
+
+                            //Mapeando os dados para salvar
                             Map<String, Object> userInfos = new HashMap<>();
                             userInfos.put("usuario", usuario);
                             userInfos.put("email", email);
-                            userRef.setValue(userInfos);
+                            //userRef.setValue(userInfos);
+                            bdReference.setValue(userInfos);
                             finish();
 
                         } else {
