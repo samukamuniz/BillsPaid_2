@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.samuniz.billspaid2.CriarDespesaActivity">
+
+    <EditText
+        android:id="@+id/despesaDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Comida"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/despesaData"
+        app:layout_constraintEnd_toEndOf="@+id/despesaValor"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/despesaValor"
+        app:layout_constraintTop_toBottomOf="@+id/despesaValor" />
+
+    <EditText
+        android:id="@+id/despesaData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="12/11/2017"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/despesaCat"
+        app:layout_constraintEnd_toEndOf="@+id/despesaDesc"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/despesaDesc"
+        app:layout_constraintTop_toBottomOf="@+id/despesaDesc" />
+
+    <EditText
+        android:id="@+id/despesaValor"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="10,00"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/despesaDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <EditText
+        android:id="@+id/despesaCat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Alimentação"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/despesaConta"
+        app:layout_constraintEnd_toEndOf="@+id/despesaData"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/despesaData"
+        app:layout_constraintTop_toBottomOf="@+id/despesaData" />
+
+    <EditText
+        android:id="@+id/despesaConta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Conta"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/despesaCheckBox"
+        app:layout_constraintEnd_toEndOf="@+id/despesaCat"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/despesaCat"
+        app:layout_constraintTop_toBottomOf="@+id/despesaCat" />
+
+    <CheckBox
+        android:id="@+id/despesaCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/paid"
+        app:layout_constraintBottom_toTopOf="@+id/btnDespesaSalvar"
+        app:layout_constraintStart_toStartOf="@+id/despesaConta"
+        app:layout_constraintTop_toBottomOf="@+id/despesaConta" />
+
+    <Button
+        android:id="@+id/btnDespesaSalvar"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/despesaConta"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/despesaConta"
+        app:layout_constraintTop_toBottomOf="@+id/despesaCheckBox" />
+</android.support.constraint.ConstraintLayout>
