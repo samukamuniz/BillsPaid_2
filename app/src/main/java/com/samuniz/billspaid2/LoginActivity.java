@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText editEmail;
     private EditText editSenha;
-    private Button btnlogin, btnCadastrar;
+    private Button btnlogin, btnSalvarLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.campoEmail);
         editSenha = findViewById(R.id.campoSenha);
         btnlogin = findViewById(R.id.btnLogin);
-        btnCadastrar = findViewById(R.id.btnCadastrar);
+        btnSalvarLogin = findViewById(R.id.btnSalvarLogin);
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+        btnSalvarLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cadastro();
