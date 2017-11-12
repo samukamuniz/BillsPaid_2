@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +35,7 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText editUsuario;
     private EditText editEmail;
     private EditText editSenha;
+    private Button btnLoginCadastro, btnSalvarCadastro;
 
     //Aqui é onde se inicia as coisas na tela
     @Override
@@ -48,9 +50,26 @@ public class CadastroActivity extends AppCompatActivity {
         editUsuario = findViewById(R.id.cadUsuario);
         editEmail = findViewById(R.id.cadEmail);
         editSenha = findViewById(R.id.cadSenha);
+        btnLoginCadastro = findViewById(R.id.btnLoginCadastro);
+        btnSalvarCadastro = findViewById(R.id.btnSalvarCadastro);
+
+        btnLoginCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login();
+            }
+        });
+
+        btnSalvarCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cadastro();
+            }
+        });
+
     }
 
-    public void salvar(View view){
+    public void cadastro(){
         final String usuario = editUsuario.getText().toString().trim();
         final String email = editEmail.getText().toString().trim();
         String senha = editSenha.getText().toString().trim();
@@ -83,7 +102,7 @@ public class CadastroActivity extends AppCompatActivity {
 
                             // [Novo] Com o Singleton
                             user = SingletonFirebase.getUser(); //Resgatando usuário atual via SingletonFirebase
-                            database = SingletonFirebase.getDatabase();
+                            //database = SingletonFirebase.getDatabase();
                             bdReference = SingletonFirebase.getReferenciaFirebase("users/" + user.getUid());
 
                             //Mapeando os dados para salvar
@@ -92,6 +111,8 @@ public class CadastroActivity extends AppCompatActivity {
                             userInfos.put("email", email);
                             //userRef.setValue(userInfos);
                             bdReference.setValue(userInfos);
+                            Intent i = new Intent(CadastroActivity.this, LoginActivity.class);
+                            startActivity(i);
                             finish();
 
                         } else {
@@ -114,7 +135,7 @@ public class CadastroActivity extends AppCompatActivity {
                 });
     }
 
-    public void login (View view){
+    public void login (){
         Intent i = new Intent(CadastroActivity.this, LoginActivity.class);
         startActivity(i);
     }
