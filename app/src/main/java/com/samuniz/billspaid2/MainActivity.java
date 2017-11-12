@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,8 +38,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @override
-    protecd void OnCreate(bundle)
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
