@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText editEmail;
     private EditText editSenha;
+    private Button btnlogin, btnCadastrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +31,30 @@ public class LoginActivity extends AppCompatActivity {
 
         editEmail = findViewById(R.id.campoEmail);
         editSenha = findViewById(R.id.campoSenha);
+        btnlogin = findViewById(R.id.btnLogin);
+        btnCadastrar = findViewById(R.id.btnCadastrar);
+
+        btnlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login();
+            }
+        });
+
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cadastro();
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        //FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
     }
 
     private void updateUI(FirebaseUser user){
@@ -47,9 +65,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void login(View view){
+    public void login(){
         String email = editEmail.getText().toString().trim();
         String senha = editSenha.getText().toString().trim();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (email.equals("")){
             editEmail.setError("Preencha este campo");
@@ -67,15 +86,15 @@ public class LoginActivity extends AppCompatActivity {
                     updateUI(mAuth.getCurrentUser());
                 } else {
                     Toast.makeText(LoginActivity.this, "Usuário ou senha incorreta!", Toast.LENGTH_SHORT).show();
-                    updateUI(null);
                 }
             }
         });
     }
 
-    public void cadastro(View view){
+    public void cadastro(){
         Intent i = new Intent(LoginActivity.this, CadastroActivity.class);
         startActivity(i);
+        finish();
     }
 
 }
