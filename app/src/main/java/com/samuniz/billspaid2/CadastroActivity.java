@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,7 +72,7 @@ public class CadastroActivity extends AppCompatActivity {
     private void cadastroSalvar(){
         final String usuario = editUsuario.getText().toString().trim();
         final String email = editEmail.getText().toString().trim();
-        String senha = editSenha.getText().toString().trim();
+        final String senha = editSenha.getText().toString().trim();
 
         if(usuario.equals("")){
             editUsuario.setError("Preencher este campo!");
@@ -103,13 +104,11 @@ public class CadastroActivity extends AppCompatActivity {
                             user = SingletonFirebase.getUser(); //Resgatando usuário atual via SingletonFirebase
                             //database = SingletonFirebase.getDatabase();
                             bdReference = SingletonFirebase.getReferenciaFirebase("users/" + user.getUid());
-
+                            ArrayList<String> lista = new ArrayList<>();
+                            lista.add("Minha Conta");
                             //Mapeando os dados para salvar
-                            Map<String, Object> userInfos = new HashMap<>();
-                            userInfos.put("usuario", usuario);
-                            userInfos.put("email", email);
-                            //userRef.setValue(userInfos);
-                            bdReference.setValue(userInfos);
+                            Usuario u = new Usuario(user.getUid(), editUsuario.getText().toString(), email, senha, lista);
+                            bdReference.setValue(u);
                             Intent i = new Intent(CadastroActivity.this, LoginActivity.class);
                             startActivity(i);
                             finish();

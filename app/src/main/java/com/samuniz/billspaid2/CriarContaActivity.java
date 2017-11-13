@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -22,7 +23,8 @@ public class CriarContaActivity extends AppCompatActivity {
     private EditText editConta, editValor;
     private Button btnContaSalvar;
     private FirebaseAuth authUsuario;
-    private DatabaseReference dbConta;
+    private DatabaseReference dbConta, dbUsuario;
+    private String idUsuCurrent, nomeUsuCurrent, emailUsuCurrent, senhaUsuCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,9 @@ public class CriarContaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_criar_conta);
 
         authUsuario = SingletonFirebase.getAutenticacao();
+
         dbConta = SingletonFirebase.getReferenciaFirebase("accounts" );
+        dbUsuario = SingletonFirebase.getReferenciaFirebase("user" );
     }
 
     @Override
@@ -61,7 +65,12 @@ public class CriarContaActivity extends AppCompatActivity {
     }
 
     private void cadastroConta(final String id, final String descricao, final String valor){
+
         Conta conta = new Conta(id, descricao, valor);
+        ArrayList<String> lista = new ArrayList<>();
+        lista.add(id);
+
+        dbUsuario.child(authUsuario.getCurrentUser().getUid()).setValue(lista);
         dbConta.child(id).setValue(conta);
         //Loader
         irParaTelaDeLogin();
@@ -72,4 +81,6 @@ public class CriarContaActivity extends AppCompatActivity {
         startActivity(it);
         finish();
     }
+
+
 }

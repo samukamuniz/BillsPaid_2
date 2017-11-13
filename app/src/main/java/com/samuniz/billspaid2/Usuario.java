@@ -14,6 +14,11 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String id, List<String> contas){
+        this.id = id;
+        this.contas = contas;
+    }
+
     public Usuario(String id, String nomeUsuario, String emailUsuario, String senhaUsuario, List<String> contas) {
         this.id = id;
         this.nomeUsuario = nomeUsuario;
