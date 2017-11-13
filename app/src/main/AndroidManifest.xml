@@ -21,10 +21,13 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CriarContaActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".CriarDespesaActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".CriarContaActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".CriarDespesaActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".ExibirContaActivity"></activity>
     </application>
 
 </manifest>
