@@ -65,9 +65,8 @@ public class CriarContaActivity extends AppCompatActivity {
         dbConta.child(id).setValue(conta);
         //Loader
         irParaTelaDeLogin();
-        
-
     }
+    
     private void irParaTelaDeLogin(){
         Intent it = new Intent(CriarContaActivity.this, MainActivity.class);
         startActivity(it);
