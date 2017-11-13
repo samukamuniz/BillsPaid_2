@@ -105,9 +105,9 @@ public class CadastroActivity extends AppCompatActivity {
                             //database = SingletonFirebase.getDatabase();
                             bdReference = SingletonFirebase.getReferenciaFirebase("users/" + user.getUid());
                             ArrayList<String> lista = new ArrayList<>();
-                            lista.add("Minha Conta");
-                            //Mapeando os dados para salvar
+
                             Usuario u = new Usuario(user.getUid(), editUsuario.getText().toString(), email, senha, lista);
+
                             bdReference.setValue(u);
                             Intent i = new Intent(CadastroActivity.this, LoginActivity.class);
                             startActivity(i);
