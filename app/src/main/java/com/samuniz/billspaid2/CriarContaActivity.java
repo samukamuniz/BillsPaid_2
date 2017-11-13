@@ -66,7 +66,7 @@ public class CriarContaActivity extends AppCompatActivity {
         //Loader
         irParaTelaDeLogin();
     }
-    
+
     private void irParaTelaDeLogin(){
         Intent it = new Intent(CriarContaActivity.this, MainActivity.class);
         startActivity(it);
