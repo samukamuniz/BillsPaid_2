@@ -49,13 +49,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        app:layout_constraintBottom_toTopOf="@+id/btnSalvarLogin"
+        app:layout_constraintBottom_toTopOf="@+id/btnCadastroSalvar"
         app:layout_constraintEnd_toEndOf="@+id/campoSenha"
         app:layout_constraintStart_toStartOf="@+id/campoSenha"
         app:layout_constraintTop_toBottomOf="@+id/campoSenha" />
 
     <Button
-        android:id="@+id/btnSalvarLogin"
+        android:id="@+id/btnCadastroSalvar"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

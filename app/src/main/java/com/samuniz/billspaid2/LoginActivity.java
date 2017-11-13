@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.campoEmail);
         editSenha = findViewById(R.id.campoSenha);
         btnlogin = findViewById(R.id.btnLogin);
-        btnSalvarLogin = findViewById(R.id.btnSalvarLogin);
+        btnSalvarLogin = findViewById(R.id.btnCadastroSalvar);
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void login(){
+    private void login(){
         String email = editEmail.getText().toString().trim();
         String senha = editSenha.getText().toString().trim();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void cadastro(){
+    private void cadastro(){
         Intent i = new Intent(LoginActivity.this, CadastroActivity.class);
         startActivity(i);
         finish();
