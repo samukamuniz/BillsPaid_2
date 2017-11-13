@@ -34,7 +34,7 @@ public class CriarContaActivity extends AppCompatActivity {
         authUsuario = SingletonFirebase.getAutenticacao();
 
         dbConta = SingletonFirebase.getReferenciaFirebase("accounts" );
-        dbUsuario = SingletonFirebase.getReferenciaFirebase("user" );
+        dbUsuario = SingletonFirebase.getReferenciaFirebase("users" );
     }
 
     @Override
@@ -59,7 +59,6 @@ public class CriarContaActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(CriarContaActivity.this, "Preencha os campos", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
@@ -70,7 +69,7 @@ public class CriarContaActivity extends AppCompatActivity {
         ArrayList<String> lista = new ArrayList<>();
         lista.add(id);
 
-        dbUsuario.child(authUsuario.getCurrentUser().getUid()).setValue(lista);
+        dbUsuario.child(authUsuario.getCurrentUser().getUid()).child("contas").setValue(lista);
         dbConta.child(id).setValue(conta);
         //Loader
         irParaTelaDeLogin();
