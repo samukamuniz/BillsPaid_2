@@ -35,7 +35,7 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText editUsuario;
     private EditText editEmail;
     private EditText editSenha;
-    private Button btnLoginCadastro, btnSalvarCadastro;
+    private Button btnCadastroLogin, btnCadastroSalvar;
 
     //Aqui é onde se inicia as coisas na tela
     @Override
@@ -50,26 +50,25 @@ public class CadastroActivity extends AppCompatActivity {
         editUsuario = findViewById(R.id.cadUsuario);
         editEmail = findViewById(R.id.cadEmail);
         editSenha = findViewById(R.id.cadSenha);
-        btnLoginCadastro = findViewById(R.id.btnLoginCadastro);
-        btnSalvarCadastro = findViewById(R.id.btnSalvarCadastro);
+        btnCadastroLogin = findViewById(R.id.btnCadastroLogin);
+        btnCadastroSalvar = findViewById(R.id.btnCadastroSalvar);
 
-        btnLoginCadastro.setOnClickListener(new View.OnClickListener() {
+        btnCadastroLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
+                cadastroLogin();
             }
         });
-
-        btnSalvarCadastro.setOnClickListener(new View.OnClickListener() {
+        btnCadastroSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cadastro();
+                cadastroSalvar();
             }
         });
 
     }
 
-    public void cadastro(){
+    private void cadastroSalvar(){
         final String usuario = editUsuario.getText().toString().trim();
         final String email = editEmail.getText().toString().trim();
         String senha = editSenha.getText().toString().trim();
@@ -135,7 +134,7 @@ public class CadastroActivity extends AppCompatActivity {
                 });
     }
 
-    public void login (){
+    private void cadastroLogin (){
         Intent i = new Intent(CadastroActivity.this, LoginActivity.class);
         startActivity(i);
     }
