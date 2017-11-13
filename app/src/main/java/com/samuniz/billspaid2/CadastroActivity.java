@@ -106,8 +106,9 @@ public class CadastroActivity extends AppCompatActivity {
                             bdReference = SingletonFirebase.getReferenciaFirebase("users/" + user.getUid());
                             ArrayList<String> lista = new ArrayList<>();
 
-                            Usuario u = new Usuario(user.getUid(), editUsuario.getText().toString(), email, senha, lista);
-
+                            //Usuario u = new Usuario(user.getUid(), editUsuario.getText().toString(), email, senha, lista);
+                            Usuario u = new Usuario(user.getUid(), editUsuario.getText().toString(),
+                                    editEmail.getText().toString(), editSenha.getText().toString(), lista);
                             bdReference.setValue(u);
                             Intent i = new Intent(CadastroActivity.this, LoginActivity.class);
                             startActivity(i);
